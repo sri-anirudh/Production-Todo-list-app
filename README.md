@@ -1,7 +1,5 @@
 # AI-Powered To-Do List Generator
 
-![Project Banner](https://github.com/yourusername/ai-todo-list-generator/raw/main/static/images/banner.png)
-
 ## 🧠 Turn Mental Chaos into Structured Action
 
 A productivity tool specifically designed for people with scattered thoughts, ADHD tendencies, or anyone who feels overwhelmed when organizing tasks. This web app uses AI to transform your messy thoughts into clear, actionable task lists with just a few clicks.
@@ -17,8 +15,10 @@ A productivity tool specifically designed for people with scattered thoughts, AD
 
 ## 🖼️ App Screenshots
 
-![App Screenshot 1](https://github.com/yourusername/ai-todo-list-generator/raw/main/static/images/screenshot1.png)
-![App Screenshot 2](https://github.com/yourusername/ai-todo-list-generator/raw/main/static/images/screenshot2.png)
+![App Screenshot 1](https://github.com/sri-anirudh/Production-Todo-list-app/blob/main/signup.png)
+![App Screenshot 2](https://github.com/sri-anirudh/Production-Todo-list-app/blob/main/signin.png)
+![App Screenshot 3](https://github.com/sri-anirudh/Production-Todo-list-app/blob/main/landing.png)
+
 
 ## 🔧 Installation & Setup
 
@@ -31,7 +31,7 @@ A productivity tool specifically designed for people with scattered thoughts, AD
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/ai-todo-list-generator.git
+   git clone https://github.com/sri-anirudh/Production-Todo-list-app.git
    cd ai-todo-list-generator
    ```
 
