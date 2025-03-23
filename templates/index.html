@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Todo List Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .user-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logout-btn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .logout-btn:hover {
+            background-color: #d32f2f;
+        }
+        .welcome-text {
+            margin-right: 10px;
+            font-size: 14px;
+        }
+        .api-key-section {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .api-key-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .api-key-input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+        }
+        .save-api-key-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .save-api-key-btn:hover {
+            background-color: #45a049;
+        }
+        .help-btn {
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .help-btn:hover {
+            background-color: #1976D2;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background-color: var(--card-bg);
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 500px;
+            position: relative;
+        }
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+        .close:hover {
+            color: #f44336;
+        }
+        .modal-content ol {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        .modal-content li {
+            margin: 10px 0;
+        }
+        .modal-content a {
+            color: #2196F3;
+            text-decoration: none;
+        }
+        .modal-content a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>AI Todo List Generator</h1>
+            <div class="user-controls">
+                <span class="welcome-text">Welcome, {{ session.username }}!</span>
+                <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+                <button id="theme-toggle" class="theme-toggle">🌙 Dark Mode</button>
+            </div>
+        </div>
+        
+        <div class="api-key-section">
+            <div class="api-key-container">
+                <input type="password" id="api-key-input" placeholder="Enter your Mistral API key" class="api-key-input">
+                <button id="save-api-key" class="save-api-key-btn">Save API Key</button>
+                <button id="api-key-help" class="help-btn">?</button>
+            </div>
+            <div id="api-key-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>How to Get Your Hugging Face API Key</h2>
+                    <ol>
+                        <li>Go to <a href="https://huggingface.co/" target="_blank">Hugging Face</a></li>
+                        <li>Sign up for an account (you can use a temporary email service if preferred)</li>
+                        <li>Once logged in, go to your Profile Settings</li>
+                        <li>Click on "Access Tokens" in the left sidebar</li>
+                        <li>Click "New token" and give it a name</li>
+                        <li>Make sure to select "write" permissions when creating the token</li>
+                        <li>Go to the <a href="https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2" target="_blank">Mistral model page</a></li>
+                        <li>Click "Accept" to agree to the model terms and conditions</li>
+                        <li>Copy your API token and paste it here</li>
+                    </ol>
+                    <p><strong>Note:</strong> Your API key is stored securely and only used for your account.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="todo-container">
+            <h2>Your Tasks</h2>
+            <div id="task-list" class="task-list">
+                <!-- Tasks will be inserted here -->
+            </div>
+        </div>
+        
+        <!-- Moved the input section to the bottom -->
+        <div class="input-section">
+            <div class="input-container">
+                <textarea id="task-context" placeholder="Describe what you need to do..."></textarea>
+                <button id="mic-btn" class="mic-btn" title="Voice typing">🎤</button>
+            </div>
+            <button id="generate-btn">Generate Tasks</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,572 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+/* Dark mode */
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: #e6e6e6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;
+}
+
+/* Dark mode container */
+body.dark-mode .container {
+    background-color: #262626;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: 500;
+}
+
+/* Dark mode headings */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3 {
+    color: #e6e6e6;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.theme-toggle {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.input-section {
+    margin-top: 30px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+/* Dark mode input section */
+body.dark-mode .input-section {
+    border-top: 1px solid #444;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: vertical;
+    font-family: inherit;
+    margin-bottom: 15px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #333;
+}
+
+/* Dark mode textarea */
+body.dark-mode textarea {
+    background-color: #333;
+    color: #e6e6e6;
+    border-color: #555;
+}
+
+button {
+    background-color: #ffd52e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Dark mode buttons */
+body.dark-mode button:disabled {
+    background-color: #555;
+    color: #aaa;
+}
+
+.todo-container {
+    background-color: #f9f9f7;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.05);
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+/* Dark mode todo container */
+body.dark-mode .todo-container {
+    background-color: #333;
+    box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.05);
+}
+
+h2 {
+    margin-bottom: 15px;
+    color: #333;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.task-list {
+    list-style-type: none;
+}
+
+.task-item {
+    padding: 10px 0;
+    display: flex;
+    align-items: flex-start;
+    transition: opacity 0.3s, background-color 0.2s;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+
+.task-item:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Dark mode task item */
+body.dark-mode .task-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .task-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.task-item:last-child {
+    border-bottom: none;
+}
+
+.circle {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #ffd52e;
+    margin-right: 10px;
+    flex-shrink: 0;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.circle.completed {
+    background-color: #ffd52e;
+    position: relative;
+}
+
+.circle.completed::after {
+    content: '✓';
+    position: absolute;
+    color: black;
+    font-size: 12px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.task-text-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.task-text {
+    transition: text-decoration 0.2s;
+}
+
+.task-completed .task-text {
+    text-decoration: line-through;
+    color: #999;
+}
+
+/* Dark mode for completed task text */
+body.dark-mode .task-completed .task-text {
+    color: #777;
+}
+
+.level-1 {
+    font-size: 0.95em;
+}
+
+.level-2 {
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* Dark mode level-2 text */
+body.dark-mode .level-2 {
+    color: #aaa;
+}
+
+/* Animation for new tasks */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.task-item {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Animation for completed tasks */
+@keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0.7; transform: translateY(0); }
+}
+
+.task-item.completed {
+    animation: fadeOut 0.3s ease-out forwards;
+}
+
+/* Animation for circle */
+@keyframes scaleUp {
+    from { transform: scale(0.8); }
+    to { transform: scale(1); }
+}
+
+.circle {
+    animation: scaleUp 0.2s ease-out;
+}
+
+/* Animation for circle when completed */
+@keyframes scaleDown {
+    from { transform: scale(1); }
+    to { transform: scale(0.8); }
+}
+
+.circle.completed {
+    animation: scaleDown 0.2s ease-out;
+}
+
+/* Emotion containers */
+.emotion-section {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+    font-size: 0.8em;
+}
+
+.current-emotion, .completion-emotion {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.emotion-label {
+    font-size: 0.85em;
+    opacity: 0.7;
+}
+
+/* Add styles for emotion boxes to display in a grid/matrix format */
+.current-emotion::after, .completion-emotion::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.emotion-box {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 0.8em;
+    margin: 2px;
+    float: left;
+}
+
+/* Ensure the emotion grid is maintained when task is collapsed and expanded */
+.task-item.collapsed .emotion-section {
+    display: none !important;
+}
+
+.task-item:not(.collapsed) .emotion-section {
+    display: flex !important;
+}
+
+/* Ensure the stopwatch controls are properly handled during collapse/expand */
+.task-item.collapsed .stopwatch-controls {
+    display: none !important;
+}
+
+.task-item:not(.collapsed) .stopwatch-controls {
+    display: flex !important;
+}
+
+.time-estimate {
+    font-size: 0.8em;
+    color: #555;
+    margin-left: 5px;
+}
+
+/* Dark mode time estimate */
+body.dark-mode .time-estimate {
+    color: #aaa;
+}
+
+/* Date headings */
+.date-heading {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ddd;
+    color: #555;
+    font-size: 1em;
+}
+
+/* Dark mode date heading */
+body.dark-mode .date-heading {
+    border-bottom: 1px solid #444;
+    color: #bbb;
+}
+
+/* Edit form styles */
+.task-item.editing {
+    background-color: rgba(0, 122, 255, 0.05);
+    padding: 15px 0;
+}
+
+body.dark-mode .task-item.editing {
+    background-color: rgba(0, 122, 255, 0.15);
+}
+
+.edit-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.edit-text, .edit-time, .edit-emotion {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+body.dark-mode .edit-text, 
+body.dark-mode .edit-time, 
+body.dark-mode .edit-emotion {
+    background-color: #333;
+    color: #e6e6e6;
+    border-color: #555;
+}
+
+.edit-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.save-btn, .cancel-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+.cancel-btn {
+    background-color: #ccc;
+    color: #333;
+}
+
+.cancel-btn:hover {
+    background-color: #bbb;
+}
+
+body.dark-mode .cancel-btn {
+    background-color: #555;
+    color: #eee;
+}
+
+body.dark-mode .cancel-btn:hover {
+    background-color: #666;
+}
+
+/* Stopwatch controls */
+.stopwatch-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.timer-display {
+    font-family: monospace;
+    font-size: 0.9em;
+    padding: 2px 5px;
+    background-color: #f0f0f0;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+body.dark-mode .timer-display {
+    background-color: #444;
+}
+
+.timer-btn {
+    padding: 2px 8px;
+    font-size: 0.8em;
+    border-radius: 3px;
+}
+
+.start-btn {
+    background-color: #4CAF50;
+}
+
+.stop-btn {
+    background-color: #F44336;
+}
+
+.reset-btn {
+    background-color: #9E9E9E;
+}
+
+/* Collapsed task styling */
+.task-item.collapsed .child-tasks {
+    display: none;
+}
+
+.collapse-toggle {
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 0.8em;
+    color: #ffd52e;
+}
+
+/* Daily total time */
+.date-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.date-total-time {
+    font-size: 0.8em;
+    color: #666;
+    background-color: rgba(0, 122, 255, 0.1);
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+body.dark-mode .date-total-time {
+    color: #ccc;
+    background-color: rgba(0, 122, 255, 0.3);
+}
+
+/* Task visibility */
+.task-item.all-completed {
+    opacity: 0.8;
+}
+
+/* Ensure collapsed items still show the expand button */
+.task-item.collapsed .collapse-toggle::before {
+    content: '▶';
+}
+
+.task-item:not(.collapsed) .collapse-toggle::before {
+    content: '▼';
+}
+
+.input-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.mic-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+    z-index: 2;
+}
+
+.mic-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.mic-btn.listening {
+    background-color: #ff4d4d;
+    color: white;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+body.dark-mode .mic-btn {
+    background-color: #444;
+    color: #e6e6e6;
+}
+
+body.dark-mode .mic-btn:hover {
+    background-color: #555;
+}
+
+body.dark-mode .mic-btn.listening {
+    background-color: #ff4d4d;
+    color: white;
+}
