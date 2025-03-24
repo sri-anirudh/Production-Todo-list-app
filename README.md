@@ -76,7 +76,7 @@ A productivity tool specifically designed for people with scattered thoughts, AD
 
 ## 🤝 Contributing
 
-Contributions are welcome! If you'd like to help improve this tool:
+Contributions are welcome! If you'd like to help improve this tool
 ---
 
 Built with ❤️ for self!
